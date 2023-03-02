@@ -9,7 +9,15 @@
             <a href="/dataset" class="font-medium capitalize text-gray-600 hover:text-black {{ Request::is('dataset') ? 'text-yellow-600' : '' }}">Dataset</a>
             <a href="/organisasi" class="font-medium capitalize text-gray-600 hover:text-black {{ Request::is('organisasi') ? 'text-yellow-600' : '' }}">Organisasi</a>
             <a href="/tentang" class="font-medium capitalize text-gray-600 hover:text-black {{ Request::is('tentang') ? 'text-yellow-600' : '' }}">Tentang</a>
-            <a href="" class="font-medium capitalize text-gray-600 hover:text-black">Login</a>
+            @guest
+            <a href="/login" class="font-medium capitalize text-gray-600 hover:text-black {{ Request::is('tentang') ? 'text-yellow-600' : '' }}">Login</a>
+            @endguest
+            @auth
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button class="font-medium capitalize text-red-600 bg-red-50 rounded-lg p-1">Logout</button>
+                </form>
+            @endauth
         </div>
     </div>
 </nav>
